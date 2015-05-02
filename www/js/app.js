@@ -82,9 +82,13 @@ angular.module('myApp', ['ionic', 'ngCordova'])
 
         var imagePath = canvas.toDataURL("image/png");
         
-        $( "#download-btn" ).one( "click", function() {
+        
 
-            window.canvas2ImagePlugin.saveImageDataToLibrary(
+      }
+
+      $( "#download-btn" ).on( "click", function() {
+
+           /* window.canvas2ImagePlugin.saveImageDataToLibrary(
               function(msg){
                   alert('done!')
               },
@@ -92,12 +96,16 @@ angular.module('myApp', ['ionic', 'ngCordova'])
                   console.log(err);
               },
               document.getElementById('the-canvas')
-            );
-
+            ); */
+            console.log('fire')
         });
 
-      }
-
+      $("#randomise-colours").on("click", function(){
+        currentXPalette = palettes[(Math.floor(Math.random() * 100))];
+        currentYPalette = palettes[(Math.floor(Math.random() * 100))];
+        $(".palette-cont").css("border", "none");
+        updateScreen();
+      });
       // Class representing a single colour palette made up of multiple colours
       // Colours are simply hex strings
       function Palette(name, colors) {
@@ -128,17 +136,9 @@ angular.module('myApp', ['ionic', 'ngCordova'])
 
      
 
-      $("#randomise-colours").on("click", function(){
-        currentXPalette = palettes[(Math.floor(Math.random() * NO_OF_PALETTES_TO_RETRIEVE))];
-        currentYPalette = palettes[(Math.floor(Math.random() * NO_OF_PALETTES_TO_RETRIEVE))];
-        $(".palette-cont").css("border", "none");
-        updateScreen();
-      });
+      
 
-      $("#generate").on('click', function() {
-        updateScreen();
-      });
-
+     
      
 
       function addColorbrewerPalettes() {
